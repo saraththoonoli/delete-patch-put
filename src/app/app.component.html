@@ -1,46 +1,33 @@
-<div>
-  <h2>Todo List</h2>
-
-  <div *ngIf="message" class="message {{ messageType }}">
-    {{ message }}
-  </div>
-
-  <div *ngIf="selectedTodo">
-    <h2>Todo Details</h2>
-    <p>Title: {{ selectedTodo.title }}</p>
-    <p>Completed: {{ selectedTodo.completed }}</p>
-    <button (click)="deleteTodo(selectedTodo.id)">Delete</button>
-    <button (click)="resetForm()">Clear</button>
-  </div>
-
+<div class="todo">
   <div>
-    <label class="form-label" for="newTitle">Title:</label>
-    <input class="form-control" [(ngModel)]="newTitle" placeholder="Title" />
-    <label class="form-label" for="newCompleted">Completed:</label>
-    <input
-      class="form-control"
-      [(ngModel)]="newCompleted"
-      placeholder="true/false"
-    />
-    &nbsp;
-    <button id="main" class="btn btn-success" (click)="addOrUpdateTodo()">
-      Add/Update Todo
-    </button>
+    <h2>Todo List</h2>
+  
+    <div *ngIf="message" class="message {{ messageType }}">
+      {{ message }}
+    </div>
+  
+    <div *ngIf="selectedTodo">
+      <h2>Todo Details</h2>
+      <p>Title: {{ selectedTodo.title }}</p>
+      <p>Completed: {{ selectedTodo.completed }}</p>
+      <button (click)="deleteTodo(selectedTodo.id)">Delete</button>
+      <button (click)="resetForm()">Clear</button>
+    </div>
   </div>
+  <ul>
+    <li *ngFor="let todo of todos">
+      {{ todo.title }}
+      <button class="btn btn-outline-danger" (click)="deleteTodo(todo.id)">
+        Delete
+      </button>
+      &nbsp;
+      <button class="btn btn-outline-success" (click)="updateTodoPatch(todo)">
+        Update with PATCH
+      </button>
+      &nbsp;
+      <button class="btn btn-outline-warning" (click)="updateTodoPut(todo)">
+        Update with PUT
+      </button>
+    </li>
+  </ul>
 </div>
-<ul>
-  <li *ngFor="let todo of todos">
-    {{ todo.title }}
-    <button class="btn btn-outline-danger" (click)="deleteTodo(todo.id)">
-      Delete
-    </button>
-    &nbsp;
-    <button class="btn btn-outline-success" (click)="updateTodoPatch(todo)">
-      Update with PATCH
-    </button>
-    &nbsp;
-    <button class="btn btn-outline-warning" (click)="updateTodoPut(todo)">
-      Update with PUT
-    </button>
-  </li>
-</ul>
