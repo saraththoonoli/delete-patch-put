@@ -61,31 +61,7 @@ export class AppComponent {
     );
   }
 
-  addOrUpdateTodo() {
-    if (this.selectedTodo) {
-      // Update existing todo
-      const updates = { title: this.newTitle, completed: this.newCompleted };
-      this.todoService.updateTodoPut(this.selectedTodo.id, updates).subscribe(
-        response => {
-          console.log('Todo updated successfully with PUT:', response);
-          this.showMessage('Todo updated successfully with PUT.', 'success');
-          this.resetForm();
-          this.getTodos();
-        }
-      );
-    } else {
-      // Add new todo
-      const newTodo = { title: this.newTitle, completed: this.newCompleted };
-      this.todoService.addTodo(newTodo).subscribe(
-        response => {
-          console.log('Todo added successfully:', response);
-          this.showMessage('Todo added successfully.', 'success');
-          this.resetForm();
-          this.getTodos();
-        }
-      );
-    }
-  }
+  
 // form reset
   resetForm() {
     this.newTitle = '';
